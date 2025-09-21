@@ -13,9 +13,12 @@
             <div>Name: {{ $worker->name }}</div>
             <div>Surname: {{ $worker->surname }}</div>
             <div>Age: {{ $worker->age }}</div>
+            <div>Email: {{ $worker->email }}</div>
             <div>Description: {{ $worker->description }}</div>
+            <div>Is Married: {{ $worker->is_married ? 'Yes' : 'No' }}</div>
             <div>
                 <a href="{{ route('worker.index') }}">Назад</a>
+                <a href="{{ route('worker.edit', $worker->id) }}">Редактировать</a>
             </div>
         </div>
         <hr>

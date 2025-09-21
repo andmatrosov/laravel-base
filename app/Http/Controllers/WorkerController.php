@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Worker\StoreRequest;
+use App\Http\Requests\Worker\UpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\Worker;
 
@@ -41,16 +42,17 @@ class WorkerController extends Controller
         return redirect()->route('worker.index');
     }
 
-    public function update() {
-        $worker = Worker::find(2);
+    public function edit(Worker $worker) {
+        return view('worker.edit', compact('worker'));
+    }
 
-        $worker->update([
-            'name' => 'Антон',
-            'surname' => 'Норм',
-            'email' => 'anton@mail.ru'
-        ]);
+    public function update(UpdateRequest $request, Worker $worker) {
+        $data = $request->validated();
+        $data["is_married"] = isset($data['is_married']);
+        $worker->update($data);
 
-        return 'Was updated';
+
+        return redirect()->route('worker.show', $worker->id);
     }
 
     public function delete() {
