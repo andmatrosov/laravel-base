@@ -22,26 +22,43 @@
     @csrf
     <div class="form-group">
         <label for="">Имя</label>
-        <input type="text" name="name" placeholder="Введите имя">
+        <input type="text" name="name" placeholder="Введите имя" value="{{ old('name') }}">
+        @error('name')
+            <span style="color: red">{{ $message }}</span>
+        @enderror
     </div>
     <div class="form-group">
         <label for="">Фамилия</label>
-        <input type="text" name="surname" placeholder="Введите фамилию">
+        <input type="text" name="surname" placeholder="Введите фамилию" value="{{ old('surname') }}">
+        @error('surname')
+            <span style="color: red">{{ $message }}</span>
+        @enderror
     </div>
     <div class="form-group">
         <label for="">Email</label>
-        <input type="email" name="email" placeholder="Введите email">
+        <input type="email" name="email" placeholder="Введите email" value="{{ old('email') }}">
+        @error('email')
+            <span style="color: red">{{ $message }}</span>
+        @enderror
     </div>
     <div class="form-group">
         <label for="">Возраст</label>
-        <input type="number" name="age" placeholder="Введите возраст">
+        <input type="number" name="age" placeholder="Введите возраст" value="{{ old('age') }}">
+        @error('age')
+            <span style="color: red">{{ $message }}</span>
+        @enderror
     </div>
     <div class="form-group">
         <label for="">Описание</label>
-        <textarea id="" cols="30" rows="10"  name="description" placeholder="Описание сотрудника"></textarea>
+        <textarea id="" cols="30" rows="10"  name="description" placeholder="Описание сотрудника">{{ old('description') }}</textarea>
+        @error('description')
+            <span style="color: red">{{ $message }}</span>
+        @enderror
     </div>
     <div class="form-group">
-        <label for="is_married"><input id="is_married" type="checkbox" name="is_married"> Женат/Замужем</label>
+        <label for="is_married"><input id="is_married" type="checkbox" name="is_married"
+                {{ old('is_married') ? 'checked' : '' }}
+            > Женат/Замужем</label>
     </div>
     <button type="submit">Добавить</button>
 </form>

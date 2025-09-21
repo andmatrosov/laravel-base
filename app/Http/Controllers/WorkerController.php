@@ -6,6 +6,7 @@ use App\Http\Requests\Worker\StoreRequest;
 use App\Http\Requests\Worker\UpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\Worker;
+use Illuminate\Validation\Rule;
 
 class WorkerController extends Controller
 {
@@ -55,11 +56,8 @@ class WorkerController extends Controller
         return redirect()->route('worker.show', $worker->id);
     }
 
-    public function delete() {
-        $worker = Worker::find(2);
-
+    public function delete(Worker $worker) {
         $worker->delete();
-
-        return 'Was deleted';
+        return redirect()->route('worker.index');
     }
 }

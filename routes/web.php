@@ -29,4 +29,4 @@ Route::get('/workers/{worker}/edit', [\App\Http\Controllers\WorkerController::cl
 
 Route::patch('/workers/{worker}', [\App\Http\Controllers\WorkerController::class, 'update'])->name('worker.update');
 //
-//Route::get('/workers/delete', [\App\Http\Controllers\WorkerController::class, 'delete'])->name('worker.delete');
+Route::delete('/workers/{worker}', [\App\Http\Controllers\WorkerController::class, 'delete'])->name('worker.delete');

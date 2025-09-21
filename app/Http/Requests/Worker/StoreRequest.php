@@ -26,10 +26,21 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required|string',
             'surname' => 'required|string',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:workers',
             'age' => 'nullable|integer',
             'description' => 'nullable|string',
             'is_married' => 'nullable|string'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Это обязательное поле',
+            'surname.required' => 'Это обязательное поле',
+            'email.required' => 'Это обязательное поле',
+            'email.email' => 'Укажите корректный email',
+            'email.unique' => 'Данный email уже используется'
         ];
     }
 }

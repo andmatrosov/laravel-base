@@ -23,26 +23,41 @@
     @method('Patch')
     <div class="form-group">
         <label for="">Имя</label>
-        <input type="text" name="name" placeholder="Введите имя" value="{{ $worker->name; }}">
+        <input type="text" name="name" placeholder="Введите имя" value="{{ old('name') ?? $worker->name }}">
+        @error('name')
+        <span style="color: red">{{ $message }}</span>
+        @enderror
     </div>
     <div class="form-group">
         <label for="">Фамилия</label>
-        <input type="text" name="surname" placeholder="Введите фамилию" value="{{ $worker->surname }}">
+        <input type="text" name="surname" placeholder="Введите фамилию" value="{{ old('surname') ?? $worker->surname }}">
+        @error('surname')
+        <span style="color: red">{{ $message }}</span>
+        @enderror
     </div>
     <div class="form-group">
         <label for="">Email</label>
-        <input type="email" name="email" placeholder="Введите email" value="{{ $worker->email; }}">
+        <input type="email" name="email" placeholder="Введите email" value="{{ old('email') ?? $worker->email }}">
+        @error('email')
+        <span style="color: red">{{ $message }}</span>
+        @enderror
     </div>
     <div class="form-group">
         <label for="">Возраст</label>
-        <input type="number" name="age" placeholder="Введите возраст" value="{{ $worker->age; }}">
+        <input type="number" name="age" placeholder="Введите возраст" value="{{ old('age') ?? $worker->age }}">
+        @error('age')
+        <span style="color: red">{{ $message }}</span>
+        @enderror
     </div>
     <div class="form-group">
         <label for="">Описание</label>
-        <textarea id="" cols="30" rows="10"  name="description" placeholder="Описание сотрудника">{{ $worker->description }}</textarea>
+        <textarea id="" cols="30" rows="10"  name="description" placeholder="Описание сотрудника">{{ old('description') ?? $worker->description }}</textarea>
+        @error('description')
+        <span style="color: red">{{ $message }}</span>
+        @enderror
     </div>
     <div class="form-group">
-        <label for="is_married"><input id="is_married" type="checkbox" name="is_married" {{ $worker->is_married ? 'checked' : '' }}> Женат/Замужем</label>
+        <label for="is_married"><input id="is_married" type="checkbox" name="is_married" {{ old('is_married') ?? $worker->is_married ? 'checked' : '' }}> Женат/Замужем</label>
     </div>
     <button type="submit">Сохранить</button>
 </form>

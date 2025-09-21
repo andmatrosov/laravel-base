@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Worker;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
@@ -26,10 +27,25 @@ class UpdateRequest extends FormRequest
         return [
             'name' => 'required|string',
             'surname' => 'required|string',
-            'email' => 'required|email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('workers')->ignore($this->worker->id)
+            ],
             'age' => 'nullable|integer',
             'description' => 'nullable|string',
             'is_married' => 'nullable|string'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Это обязательное поле',
+            'surname.required' => 'Это обязательное поле',
+            'email.required' => 'Это обязательное поле',
+            'email.email' => 'Укажите корректный email',
+            'email.unique' => 'Данный email уже используется'
         ];
     }
 }
